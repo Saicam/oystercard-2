@@ -8,6 +8,10 @@ describe OysterCard do
     it "set a balance of zero when initializing" do
       expect(subject.balance).to eq 0
     end
+
+    it "has an empty arraw of journeys by default" do
+      expect(subject.journeys).to be_empty
+    end
   end
 
   describe "#top_up" do
@@ -51,14 +55,18 @@ describe OysterCard do
   end
 
   describe "#touch_out" do
+    it { is_expected.to respond_to(:touch_out).with(2).argument }
+
     it "set in journey" do
-      subject.touch_out
+      subject.touch_out(station)
       expect(subject).not_to be_in_journey
     end
 
     it "charges the minimum fare on touch in" do
       subject.top_up(5)
-      expect {subject.touch_out}.to change{subject.balance}.by(-OysterCard::MINIMUM_BALANCE)
+      expect {subject.touch_out(station)}.to change{subject.balance}.by(-OysterCard::MINIMUM_BALANCE)
     end
+
+
   end
 end
