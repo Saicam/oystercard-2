@@ -1,5 +1,7 @@
 class OysterCard
-MAXIMUM_LIMIT = 90
+    attr_reader :balance
+    MAXIMUM_LIMIT = 90
+    
   def initialize
     @balance = 0
   end
