@@ -26,4 +26,26 @@ describe OysterCard do
 
     end
   end
+
+  describe "#in_journey?" do
+    it "checks if it in journey" do
+      subject.touch_in
+      expect(subject).to be_in_journey
+    end
+  end
+
+  describe "#touch_in" do
+    it "set in journey" do
+      subject.touch_in
+      expect(subject).to be_in_journey
+    end
+  end
+
+  describe "#touch_out" do
+    it "set in journey" do
+      subject.touch_out
+      expect(subject).not_to be_in_journey
+    end
+  end
+
 end
