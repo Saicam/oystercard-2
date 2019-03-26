@@ -12,11 +12,18 @@ describe OysterCard do
     it "add the given amount to the balance" do
       expect{ subject.top_up 1 }.to change{ subject.balance }.by 1
     end
-    
+
     it "raises error if balance exceeds maximum limit" do
       maximum_balance= OysterCard::MAXIMUM_LIMIT
       subject.top_up maximum_balance
       expect{subject.top_up 1 }.to raise_error "Maximum balance of #{maximum_balance}exceeded"
+    end
+  end
+
+  describe "#deduct" do
+    it "deduct the given amount to the balance" do
+      expect{ subject.deduct 1 }.to change{ subject.balance }.by -1
+
     end
   end
 end
